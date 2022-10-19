@@ -1,7 +1,8 @@
-import { Category, Home } from "@material-ui/icons";
 import { createBrowserRouter } from "react-router-dom";
 
 import Main from "../Layout/Main";
+import Category from "../Pages/Category/Category";
+import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import News from "../Pages/News/News";
@@ -12,9 +13,8 @@ export const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/news"),
       },
       {
         path: "/category/:id",
