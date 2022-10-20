@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,10 +9,24 @@ import Button from "react-bootstrap/Button";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 import { Image } from "react-bootstrap";
 import "./Header.css";
+import { AuthContext } from "../../contexts/UserContext";
 const Header = () => {
-  const user = "Ashiq";
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   return (
-    <Navbar collapseOnSelect className="mb-4 p-4 position-fix" expand="lg">
+    <Navbar
+      collapseOnSelect
+      className="mb-4"
+      expand="lg"
+      bg="light"
+      variant="light"
+    >
       <Container>
         <Navbar.Brand>
           <Link to="/">Dragon News</Link>
@@ -38,7 +52,10 @@ const Header = () => {
             <Nav.Link href="#deets">
               {user?.uid ? (
                 <>
-                  <Button variant="light">Log out</Button>
+                  <span>{user?.displayName}</span>
+                  <Button variant="light" onClick={handleLogOut}>
+                    Log out
+                  </Button>
                 </>
               ) : (
                 <>
@@ -55,7 +72,7 @@ const Header = () => {
                   src={user?.photoURL}
                 ></Image>
               ) : (
-                <FaUser size={30}></FaUser>
+                <FaUser></FaUser>
               )}
             </Nav.Link>
           </Nav>
@@ -67,5 +84,4 @@ const Header = () => {
     </Navbar>
   );
 };
-
 export default Header;
