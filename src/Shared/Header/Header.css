@@ -1,0 +1,15 @@
+.position-fix {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: rgb(20, 14, 14);
+}
+
+.position-fix a {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}

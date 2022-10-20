@@ -8,17 +8,11 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 import { Image } from "react-bootstrap";
-
+import "./Header.css";
 const Header = () => {
   const user = "Ashiq";
   return (
-    <Navbar
-      collapseOnSelect
-      className="mb-4"
-      expand="lg"
-      bg="light"
-      variant="light"
-    >
+    <Navbar collapseOnSelect className="mb-4 p-4 position-fix" expand="lg">
       <Container>
         <Navbar.Brand>
           <Link to="/">Dragon News</Link>

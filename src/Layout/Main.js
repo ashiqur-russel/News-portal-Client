@@ -10,15 +10,15 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <Container>
-        <Row className="">
-          <Col xs lg="3">
+      <Container className="mt-5">
+        <Row className="p-5">
+          <Col lg="2">
             <LeftSideNav></LeftSideNav>
           </Col>
-          <Col md="7">
+          <Col lg="8">
             <Outlet></Outlet>
           </Col>
-          <Col xs lg="2">
+          <Col lg="2">
             <RightSideNav></RightSideNav>
           </Col>
         </Row>

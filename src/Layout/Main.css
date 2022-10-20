@@ -1,0 +1,15 @@
+.conatainer {
+  padding: 10px;
+  margin: 0;
+}
+.left-sidebar {
+  position: fixed;
+  color: black;
+  top: 0;
+}
+
+.right-sidebar {
+  position: fixed;
+  color: black;
+  top: 0;
+}

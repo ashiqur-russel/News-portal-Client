@@ -2,8 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListGroup from "react-bootstrap/ListGroup";
-
-import {
+/* import "./RightSideNav.css";
+ */ import {
   FaGoogle,
   FaGithub,
   FaFacebook,
@@ -15,7 +15,7 @@ import BrandCarousel from "../BrandCarousel/BrandCarousel";
 
 const RightSideNav = () => {
   return (
-    <div>
+    <div className="right-sidebar ">
       <ButtonGroup vertical>
         <Button className="mb-2" variant="outline-primary">
           {" "}
