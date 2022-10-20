@@ -3,13 +3,24 @@
   top: 0;
   z-index: 1;
   width: 100%;
-  background-color: rgb(20, 14, 14);
+  background-color: rgb(75, 82, 82);
 }
 
 .position-fix a {
   color: white;
 }
 
-a {
+.nav-link a {
   text-decoration: none;
+  margin-right: 10px;
+  padding: 10px;
+  text-transform: uppercase;
+  border: 1px solid black;
+  background-color: aliceblue;
+  color: black;
+}
+.nav-link a:hover {
+  cursor: pointer;
+  color: rgb(6, 6, 6);
+  background-color: beige;
 }
