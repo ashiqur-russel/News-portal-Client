@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 import { Image } from "react-bootstrap";
@@ -12,10 +12,13 @@ import "./Header.css";
 import { AuthContext } from "../../contexts/UserContext";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        navigate("/login");
+      })
       .catch((error) => console.error(error));
   };
 
@@ -49,8 +52,8 @@ const Header = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
-              {user?.uid ? (
+            <>
+              {user && user?.uid ? (
                 <>
                   <span>{user?.displayName}</span>
                   <Button variant="light" onClick={handleLogOut}>
@@ -63,8 +66,9 @@ const Header = () => {
                   <Link to="/register">Register</Link>
                 </>
               )}
-            </Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
+            </>
+
+            <Link to="/profile" eventKey={2} href="#memes">
               {user?.photoURL ? (
                 <Image
                   style={{ height: "30px" }}
@@ -74,7 +78,7 @@ const Header = () => {
               ) : (
                 <FaUser></FaUser>
               )}
-            </Nav.Link>
+            </Link>
           </Nav>
           <div className="d-lg-none">
             <LeftSideNav></LeftSideNav>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./LeftSideNav.css";
 const LeftSideNav = () => {
   const [categories, setCategories] = useState([]);
-  console.log(categories);
   useEffect(() => {
     fetch("http://localhost:5000/news-categories")
       .then((res) => res.json())

@@ -1,8 +1,45 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
+
 import Form from "react-bootstrap/Form";
+import { AuthContext } from "../../../contexts/UserContext";
+import { useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
-  const handleSubmit = () => {};
+  const { signIn, setLoading } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+        if (user) {
+          navigate(from, { replace: true });
+          toast.success("Logged in Successfully!");
+        } else {
+          toast.error(
+            "Your email is not verified. Please verify your email address."
+          );
+        }
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -28,7 +65,7 @@ const Login = () => {
       <Button variant="primary" type="submit">
         Login
       </Button>
-      <Form.Text className="text-danger"></Form.Text>
+      <Form.Text className="text-danger">{error}</Form.Text>
     </Form>
   );
 };

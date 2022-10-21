@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListGroup from "react-bootstrap/ListGroup";
+import { toast } from "react-toastify";
+
 /* import "./RightSideNav.css";
  */ import {
   FaGoogle,
@@ -12,18 +14,22 @@ import ListGroup from "react-bootstrap/ListGroup";
   FaWhatsapp,
   FaTwitch,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 import BrandCarousel from "../BrandCarousel/BrandCarousel";
 
 const RightSideNav = () => {
   const { providerLogin } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((res) => {
         const user = res.user;
         console.log(user);
+        navigate("/");
+        toast.success("Logged in with Google");
       })
       .catch((err) => {
         console.log(err);
