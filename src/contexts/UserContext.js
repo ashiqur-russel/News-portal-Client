@@ -37,6 +37,10 @@ const UserContext = ({ children }) => {
     return signOut(auth);
   };
 
+  const updateuserProfile = (profile) => {
+    return updateuserProfile(auth.currentUser, profile);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setuser(currentUser);
@@ -46,7 +50,15 @@ const UserContext = ({ children }) => {
       unsubscribe();
     };
   }, []);
-  const userInfo = { user, providerLogin, logOut, createUser, signIn, loading };
+  const userInfo = {
+    user,
+    providerLogin,
+    logOut,
+    createUser,
+    signIn,
+    loading,
+    updateuserProfile,
+  };
 
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
