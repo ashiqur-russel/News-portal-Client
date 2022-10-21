@@ -32,7 +32,7 @@ const Header = () => {
     >
       <Container>
         <Navbar.Brand>
-          <Link to="/">Dragon News</Link>
+          <Link to="/">News21</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

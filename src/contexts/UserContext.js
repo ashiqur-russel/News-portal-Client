@@ -17,6 +17,7 @@ const UserContext = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const providerLogin = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
@@ -39,12 +40,13 @@ const UserContext = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setuser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
     };
   }, []);
-  const userInfo = { user, providerLogin, logOut, createUser, signIn };
+  const userInfo = { user, providerLogin, logOut, createUser, signIn, loading };
 
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
