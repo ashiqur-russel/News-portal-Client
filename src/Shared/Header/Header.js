@@ -68,7 +68,7 @@ const Header = () => {
               )}
             </>
 
-            <Link to="/profile" eventKey={2} href="#memes">
+            <Link to="/profile" href="#memes">
               {user?.photoURL ? (
                 <Image
                   style={{ height: "30px" }}

@@ -14,9 +14,7 @@ const News = () => {
       <Card.Img variant="top" src={image_url}></Card.Img>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Text>
-          <p>{details}</p>
-        </Card.Text>
+        <Card.Text>{details}</Card.Text>
         <Link to={`/category/${category_id}`}>
           {" "}
           <Button variant="outline-secondary">All News in this category</Button>

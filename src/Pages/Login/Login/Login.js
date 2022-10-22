@@ -23,7 +23,7 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError("");
-        if (user) {
+        if (user.emailVerified) {
           navigate(from, { replace: true });
           toast.success("Logged in Successfully!");
         } else {

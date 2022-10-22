@@ -3,9 +3,11 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 export const auth = getAuth(app);
@@ -38,12 +40,18 @@ const UserContext = ({ children }) => {
   };
 
   const updateuserProfile = (profile) => {
-    return updateuserProfile(auth.currentUser, profile);
+    return updateProfile(auth.currentUser, profile);
+  };
+
+  const verifyUserEmail = () => {
+    return sendEmailVerification(auth.currentUser);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setuser(currentUser);
+      if (currentUser===null || currentUser.emailVerified) {
+        setuser(currentUser);
+      }
       setLoading(false);
     });
     return () => {
@@ -58,6 +66,7 @@ const UserContext = ({ children }) => {
     signIn,
     loading,
     updateuserProfile,
+    verifyUserEmail,
   };
 
   return (

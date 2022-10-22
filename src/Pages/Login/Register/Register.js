@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 
 import { AuthContext } from "../../../contexts/UserContext";
 const Register = () => {
-  const { createUser, updateuserProfile } = useContext(AuthContext);
+  const { createUser, updateuserProfile, verifyUserEmail } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const [accepeted, setAccepted] = useState(false);
-
   //terms & condiotion
   const handleAccepted = (event) => {
     setAccepted(event.target.checked);
@@ -30,10 +30,8 @@ const Register = () => {
         console.log(user);
         setError("");
         form.reset();
-        handleUpdateUserProfile(name, photoURL)
-          .then(() => {})
-          .cathc((err) => console.err(err));
-        toast.success("Please verify your email address.");
+        handleUpdateUserProfile(name, photoURL);
+        handleEmailVerification();
       })
       .catch((e) => {
         setError(e);
@@ -41,6 +39,20 @@ const Register = () => {
         console.log(e.message);
       });
   };
+
+  const handleEmailVerification = () => {
+    verifyUserEmail()
+      .then((res) => {
+        toast.warning("Check your email for verification!");
+      })
+      .catch((err) => toast.warning("Something went wrong", err));
+  };
+
+  /*  verifyUserEmail()
+          .then((res) => {
+            toast.warning("Check your email for verification!");
+          })
+          .catch((err) => toast.warning("Something went wrong", err)); */
 
   const handleUpdateUserProfile = (name, photoURL) => {
     const profile = {
