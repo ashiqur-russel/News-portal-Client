@@ -5,7 +5,9 @@ import { toast } from "react-toastify";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../../contexts/UserContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
 const Login = () => {
+  useTitle("login-dragon news");
   const { signIn, setLoading } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();

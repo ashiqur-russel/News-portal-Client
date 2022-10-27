@@ -55,7 +55,7 @@ const Header = () => {
             <>
               {user && user?.uid ? (
                 <>
-                  <span>{user?.displayName}</span>
+                  <span>{user && user?.emailVerified}</span>
                   <Button variant="light" onClick={handleLogOut}>
                     Log out
                   </Button>

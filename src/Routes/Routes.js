@@ -16,14 +16,17 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:5000/news"),
+        loader: () =>
+          fetch("https://dragon-news-server-steel-five.vercel.app/news"),
         element: <Home></Home>,
       },
       {
         path: "/category/:id",
         element: <Category></Category>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/category/${params.id}`);
+          return fetch(
+            `https://dragon-news-server-steel-five.vercel.app/category/${params.id}`
+          );
         },
       },
 
@@ -35,7 +38,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/news/${params.id}`);
+          return fetch(
+            `https://dragon-news-server-steel-five.vercel.app/news/${params.id}`
+          );
         },
       },
       {
